@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Angular Demo</title>
+	<style>
+	.morning {
+		color : green;
+	}
+	.evening {
+		color : red;
+	}
+	</style>
+	<script src="angular.js"></script>
+	<script>
+	var app = angular.module('myApp',[]);
+	app.controller('greetController',function greetController($scope){
+		$scope.emp = {
+			firstname : "Magesh",
+			lastname : "Kuppan",
+			greetMsg : "[dummy msg]",
+			disabled : function(){
+				return this.firstname === '' || this.lastname === '';
+			},
+			greet : function(){
+				this.greetMsg = "Hi " + this.firstname + " " + this.lastname;
+			},
+			style : function(){
+				return new Date().getHours() < 12 ? "morning" : "evening";
+			}
+		}
+	});
+	
+	</script>
+</head>
+<body ng-app="myApp"> 
+	<div ng-controller="greetController">
+		<input type="text" ng-model="emp.firstname">
+		<input type="text" ng-model="emp.lastname" >
+		<input type="button" value="Greet" ng-click="emp.greet()" ng-disabled="emp.disabled()">
+		<div ng-class="emp.style()">{{emp.greetMsg}}</div>	
+	</div>
+</body>
+</html>
