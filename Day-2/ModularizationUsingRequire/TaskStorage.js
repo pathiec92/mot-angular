@@ -1,4 +1,4 @@
-function getTaskStorage(fn){
+define(['./Task'],function(Task){
 	var browserStore = window.localStorage;
 	var countChangeSubscribers = [];
 		
@@ -53,4 +53,4 @@ function getTaskStorage(fn){
 		addCountChanged : addCountChangeSubscriber
 	};
 
-}
+});
